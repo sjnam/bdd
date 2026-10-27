@@ -14,7 +14,7 @@
 #   queens.w     n-퀸을 BDD로
 #   indep.w      독립집합을 ZDD로
 #   simpath.w    격자의 단순 경로를 프런티어 법으로
-#   bddl.w       크누스의 BDDL/ZDDL 문법을 쓰는 계산기
+#   bddl.w       커누스의 BDDL/ZDDL 문법을 쓰는 계산기
 #   solitaire.w  페그 솔리테어를 상징적 도달 가능성으로
 #   order.w      변수 차례가 BDD 크기를 어떻게 좌우하는가
 #   circuit.w    가산기 둘의 등가성 증명, 그리고 곱셈기라는 천장
