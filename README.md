@@ -3,7 +3,7 @@
 커누스가 『The Art of Computer Programming』 7.1.4절을 준비하며 쓴 두 습작
 [**BDD14**](https://www-cs-faculty.stanford.edu/~knuth/programs/bdd14.w)와
 [**BDD15**](https://www-cs-faculty.stanford.edu/~knuth/programs/bdd15.w)를
-Go로 옮긴 것이다. 앞의 것은 변수 재정렬까지 갖춘 BDD 꾸러미이고, 뒤의 것은
+Go로 옮긴 것이다. 앞의 것은 변수 재정렬까지 갖춘 BDD 패키지이고, 뒤의 것은
 같은 뼈대를 ZDD로 다시 지은 것이다.
 
 두 프로그램을 나란히 놓고 읽으면 재미있는 것이 보인다. 3000줄이 넘는 두 글이
@@ -277,7 +277,7 @@ Go에서는 필요 없다.
 
 ## 온전성 검사
 
-BDD 꾸러미는 겹겹이 남아도는 자료 구조 위에 서 있다. 유일 테이블도 캐시도
+BDD 패키지는 겹겹이 남아도는 자료 구조 위에 서 있다. 유일 테이블도 캐시도
 참조 계수도 모두 “없어도 답은 나오는” 것들이라, 어딘가 어긋나도 당장은
 표가 나지 않는다. 그래서 커누스를 따라 `Check()`를 두었다.
 
