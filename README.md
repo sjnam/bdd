@@ -23,11 +23,11 @@ Go로 옮긴 것이다. 앞의 것은 변수 재정렬까지 갖춘 BDD 패키�
 go get github.com/sjnam/bdd
 ```
 
-`.w`를 손보려면 [GWEB](https://github.com/sjnam/gweb)이 필요하다. 조판은
+`.gw`를 손보려면 [GWEB](https://github.com/sjnam/gweb)이 필요하다. 조판은
 한글이므로 luatex으로만 된다.
 
 ```sh
-make          # .w를 Go로 짜내고 빌드한다
+make          # .gw를 Go로 짜내고 빌드한다
 make test     # 시험을 돌린다
 make pdf      # 문학적 문서를 조판한다
 ```
@@ -215,7 +215,7 @@ f1: 노드 7개, 6개
 
 ## 문학적 프로그램
 
-`.w` 파일만이 원본이다. `gtangle`이 Go를 짜내고 `gweave`가 조판할 TeX을
+`.gw` 파일만이 원본이다. `gtangle`이 Go를 짜내고 `gweave`가 조판할 TeX을
 짜낸다. 각 문서는 처음부터 끝까지 혼자 읽을 수 있게 썼다.
 
 예제 아홉도 모두 문학적 프로그램이다. `make pdf`를 돌리면 열세 편이 함께
@@ -228,21 +228,21 @@ f1: 노드 7개, 6개
 
 | 파일 | 담은 것 |
 | --- | --- |
-| `common.w` | 공통의 땅: 노드 배열, 변수와 유일 테이블, 캐시, 참조 계수, 손잡이, 쓰레기 수거, 온전성 검사 |
-| `bdd.w` | BDD 엔진: 이항·삼항 연산, 한정사, 함수 합성, 세기와 열거 |
-| `zdd.w` | ZDD 엔진: 족의 대수, 나눗셈, 대칭 함수, 세기와 열거, 최적화 |
-| `reorder.w` | 제자리 맞바꿈과 Rudell의 체질 |
-| `examples/queens/queens.w` | n-퀸을 BDD로 |
-| `examples/indep/indep.w` | 독립집합을 ZDD로 |
-| `examples/simpath/simpath.w` | 프런티어 법으로 단순 경로 세기 |
-| `examples/bddl/bddl.w` | 커누스의 명령 언어를 쓰는 계산기 |
-| `examples/solitaire/solitaire.w` | 페그 솔리테어를 상징적 도달 가능성으로 |
-| `examples/order/order.w` | 변수 차례가 BDD 크기를 어떻게 좌우하는가 |
-| `examples/circuit/circuit.w` | 회로 등가성 검사와 곱셈기의 폭발 |
-| `examples/factor/factor.w` | 곱의 합 인수분해, 미나토의 나눗셈 |
-| `examples/pentomino/pentomino.w` | 펜토미노 타일링, 정확 피복을 ZDD로 |
+| `common.gw` | 공통의 땅: 노드 배열, 변수와 유일 테이블, 캐시, 참조 계수, 손잡이, 쓰레기 수거, 온전성 검사 |
+| `bdd.gw` | BDD 엔진: 이항·삼항 연산, 한정사, 함수 합성, 세기와 열거 |
+| `zdd.gw` | ZDD 엔진: 족의 대수, 나눗셈, 대칭 함수, 세기와 열거, 최적화 |
+| `reorder.gw` | 제자리 맞바꿈과 Rudell의 체질 |
+| `examples/queens/queens.gw` | n-퀸을 BDD로 |
+| `examples/indep/indep.gw` | 독립집합을 ZDD로 |
+| `examples/simpath/simpath.gw` | 프런티어 법으로 단순 경로 세기 |
+| `examples/bddl/bddl.gw` | 커누스의 명령 언어를 쓰는 계산기 |
+| `examples/solitaire/solitaire.gw` | 페그 솔리테어를 상징적 도달 가능성으로 |
+| `examples/order/order.gw` | 변수 차례가 BDD 크기를 어떻게 좌우하는가 |
+| `examples/circuit/circuit.gw` | 회로 등가성 검사와 곱셈기의 폭발 |
+| `examples/factor/factor.gw` | 곱의 합 인수분해, 미나토의 나눗셈 |
+| `examples/pentomino/pentomino.gw` | 펜토미노 타일링, 정확 피복을 ZDD로 |
 
-시험도 같은 원본에서 짜여 나온다. `gtangle bdd.w`는 `bdd.go`와 `bdd_test.go`를
+시험도 같은 원본에서 짜여 나온다. `gtangle bdd.gw`는 `bdd.go`와 `bdd_test.go`를
 함께 내놓는다.
 
 ## Go로 옮기며 달라진 것

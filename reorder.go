@@ -1,17 +1,17 @@
-//line reorder.w:32
+//line reorder.gw:32
 package bdd
 
-//line reorder.w:62
+//line reorder.gw:62
 func (b *base) decChild(p int32) {
 	if p > topsink {
 		b.mem[p].xref--
 	}
 }
 
-//line reorder.w:73
+//line reorder.gw:73
 func (b *base) swap(u, v int32) {
 
-//line reorder.w:85
+//line reorder.gw:85
 	var solitary, tangled []int32
 	for _, p := range b.vars[u].tab {
 		if p == null {
@@ -27,9 +27,9 @@ func (b *base) swap(u, v int32) {
 		}
 	}
 
-//line reorder.w:75
+//line reorder.gw:75
 
-//line reorder.w:104
+//line reorder.gw:104
 	var remote, hidden []int32
 	for _, p := range b.vars[v].tab {
 		if p == null {
@@ -44,9 +44,9 @@ func (b *base) swap(u, v int32) {
 		}
 	}
 
-//line reorder.w:76
+//line reorder.gw:76
 
-//line reorder.w:123
+//line reorder.gw:123
 	b.newTable(u, len(tangled)+len(remote))
 	b.newTable(v, len(solitary))
 	for _, p := range remote {
@@ -58,9 +58,9 @@ func (b *base) swap(u, v int32) {
 		b.insertNode(v, p)
 	}
 
-//line reorder.w:77
+//line reorder.gw:77
 
-//line reorder.w:142
+//line reorder.gw:142
 	for _, f := range tangled {
 		g, h := b.mem[f].lo, b.mem[f].hi
 		gg := b.swapFind(v, b.cofactor(g, v, false), b.cofactor(h, v, false))
@@ -69,12 +69,12 @@ func (b *base) swap(u, v int32) {
 		b.insertNode(u, f)
 	}
 
-//line reorder.w:78
+//line reorder.gw:78
 	for _, p := range hidden {
 		b.freeNode(p)
 	}
 
-//line reorder.w:246
+//line reorder.gw:246
 	j, k := b.vars[u].name, b.vars[v].name
 	b.vars[u].name, b.vars[v].name = k, j
 	b.vmap[j], b.vmap[k] = v, u
@@ -84,14 +84,14 @@ func (b *base) swap(u, v int32) {
 	b.vars[u].proj, b.vars[v].proj = b.vars[v].proj, b.vars[u].proj
 	if b.zdd {
 
-//line reorder.w:267
+//line reorder.gw:267
 		b.vars[u].elt, b.vars[v].elt = b.vars[v].elt, b.vars[u].elt
 		b.vars[v].taut = b.mem[b.vars[u].taut].lo
 
-//line reorder.w:255
+//line reorder.gw:255
 	} else {
 
-//line reorder.w:274
+//line reorder.gw:274
 		b.vars[u].repl, b.vars[v].repl = b.vars[v].repl, b.vars[u].repl
 		switch {
 		case b.vars[v].repl != null && b.vars[v].stamp == 0:
@@ -101,13 +101,13 @@ func (b *base) swap(u, v int32) {
 			b.vars[v].stamp = 0
 		}
 
-//line reorder.w:257
+//line reorder.gw:257
 	}
 
-//line reorder.w:82
+//line reorder.gw:82
 }
 
-//line reorder.w:154
+//line reorder.gw:154
 func (b *base) cofactor(x, v int32, hi bool) int32 {
 	if b.mem[x].lvl > v {
 		if hi && b.zdd {
@@ -121,7 +121,7 @@ func (b *base) cofactor(x, v int32, hi bool) int32 {
 	return b.mem[x].lo
 }
 
-//line reorder.w:172
+//line reorder.gw:172
 func (b *base) swapFind(v, l, h int32) int32 {
 	if b.zdd {
 		if h == botsink {
@@ -137,7 +137,7 @@ func (b *base) swapFind(v, l, h int32) int32 {
 		mask := int32(len(tab)) - 1
 		k := int32(hash2(l, h)) & mask
 
-//line reorder.w:192
+//line reorder.gw:192
 		for tab[k] != null {
 			if p := tab[k]; b.mem[p].lo == l && b.mem[p].hi == h {
 				b.ref(p)
@@ -146,9 +146,9 @@ func (b *base) swapFind(v, l, h int32) int32 {
 			k = (k + 1) & mask
 		}
 
-//line reorder.w:187
+//line reorder.gw:187
 
-//line reorder.w:201
+//line reorder.gw:201
 		if b.vars[v].free-1 <= len(tab)/4 {
 			b.resizeTable(v, 2*len(tab))
 			continue
@@ -161,11 +161,11 @@ func (b *base) swapFind(v, l, h int32) int32 {
 		b.ref(h)
 		return p
 
-//line reorder.w:188
+//line reorder.gw:188
 	}
 }
 
-//line reorder.w:217
+//line reorder.gw:217
 func (b *base) newTable(v int32, m int) {
 	n := 2
 	for 3*n < 4*m {
@@ -191,7 +191,7 @@ func (b *base) insertNode(v, q int32) {
 	}
 }
 
-//line reorder.w:289
+//line reorder.gw:289
 func (b *base) reorderInit() {
 	b.collectGarbage(true)
 	b.totalvars, b.first = 0, -1
@@ -216,7 +216,7 @@ func (b *base) reorderInit() {
 
 func (b *base) reorderFin() { b.cacheInit() }
 
-//line reorder.w:321
+//line reorder.gw:321
 func (b *base) explore(u int32, up bool, best *int) int32 {
 	for {
 		nxt := b.vars[u].down
@@ -238,7 +238,7 @@ func (b *base) explore(u int32, up bool, best *int) int32 {
 	}
 }
 
-//line reorder.w:346
+//line reorder.gw:346
 func (b *base) stepUp(u int32) int32 {
 	p := b.vars[u].up
 	b.swap(p, u)
@@ -251,13 +251,13 @@ func (b *base) stepDown(u int32) int32 {
 	return d
 }
 
-//line reorder.w:366
+//line reorder.gw:366
 func (b *base) sift(v int32) {
 	best, u := b.total, v
 	up := b.totalvars-b.vars[v].aux >= b.vars[v].aux
 	u = b.explore(u, up, &best)
 
-//line reorder.w:377
+//line reorder.gw:377
 	for u != v {
 		if u < v {
 			u = b.stepDown(u)
@@ -266,10 +266,10 @@ func (b *base) sift(v int32) {
 		}
 	}
 
-//line reorder.w:371
+//line reorder.gw:371
 	u = b.explore(u, !up, &best)
 
-//line reorder.w:386
+//line reorder.gw:386
 	for b.total != best {
 		if up { // 두 번째 방향은 아래쪽이었으니 위로 되짚는다
 			if b.vars[u].up < 0 {
@@ -284,11 +284,11 @@ func (b *base) sift(v int32) {
 		}
 	}
 
-//line reorder.w:373
+//line reorder.gw:373
 	b.vars[u].aux = -b.vars[u].aux // 이 변수는 체질을 마쳤다
 }
 
-//line reorder.w:405
+//line reorder.gw:405
 func (b *base) siftAll() {
 	for v := b.first; v >= 0; {
 		if b.vars[v].aux < 0 {
@@ -299,7 +299,7 @@ func (b *base) siftAll() {
 	}
 }
 
-//line reorder.w:420
+//line reorder.gw:420
 func (b *base) Order() []int {
 	out := []int{}
 	for _, v := range b.levels() {
@@ -321,7 +321,7 @@ func (b *base) Swap(k int) {
 	b.reorderFin()
 }
 
-//line reorder.w:444
+//line reorder.gw:444
 func (b *base) Sift(k int) {
 	b.drain()
 	v := b.level(int32(k))
@@ -340,7 +340,7 @@ func (b *base) SiftAll() {
 	b.reorderFin()
 }
 
-//line reorder.w:466
+//line reorder.gw:466
 func (b *base) Reorder(order []int) {
 	b.drain()
 	b.reorderInit()
